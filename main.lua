@@ -1,8 +1,8 @@
 function love.load() -- Before game code
     target = {} -- Creates an empty table
-    target.x = 300 -- Adds an x key with 300 as the value to the table
-    target.y = 300 -- Adds a y key with 300 as the value to the table
     target.radius = 50 -- Adds a radius key with 50 as the value to the table
+    target.x = math.random(target.radius, love.graphics.getWidth())
+    target.y = math.random(target.radius, love.graphics.getHeight())
 
     score = 0 -- Keeps track of the score
     timer = 0 -- Keeps track of the timer
@@ -28,6 +28,8 @@ function love.mousepressed(x, y, button, istouch, presses) -- Updating love's mo
         local distance = distanceBetween(x, y, target.x, target.y) -- Calls the distance function on the mouse and the circle center
         if distance < target.radius then  -- If the distance between the mouse and the center of the circle is less than the radius
             score = score + 1 -- Increase the score
+            target.x = math.random(target.radius, love.graphics.getWidth() - target.radius)
+            target.y = math.random(target.radius, love.graphics.getHeight() - target.radius)
         end
     end
 end
