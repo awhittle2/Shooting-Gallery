@@ -25,7 +25,7 @@ end
 
 function love.mousepressed(x, y, button, istouch, presses) -- Updating love's mouse pressed function
     if button == 1 then -- If the primary mouse button is pressed
-        distance = distanceBetween(x, y, target.x, target.y) -- Calls the distance function on the mouse and the circle center
+        local distance = distanceBetween(x, y, target.x, target.y) -- Calls the distance function on the mouse and the circle center
         if distance < target.radius then  -- If the distance between the mouse and the center of the circle is less than the radius
             score = score + 1 -- Increase the score
         end
@@ -33,16 +33,5 @@ function love.mousepressed(x, y, button, istouch, presses) -- Updating love's mo
 end
 
 function distanceBetween(x1, y1, x2, y2) -- Function to calculate the distance formula
-    temp1 = x2 - x1 -- Temp to store distance between x2 and x2
-    temp2 = y2 - y1 -- Temp to store distance between y2 and y1
-
-    temp1 = temp1^2 -- Square temp
-    temp2 = temp2^2 -- Square temp
-
-    distance = temp1 + temp2 -- Create a variable named distance and set it to temp1 + temp2
-    temp1 = nil -- Delete temp
-    temp2 = nil -- Delete temp
-    distance = distance^(1/2) -- Set distance to the rad of distance
-
-    return distance -- Return the distance between point a and b
+    return ((x2-x1)^2+(y2-y1)^2)^(1/2) -- Distance formula
 end
